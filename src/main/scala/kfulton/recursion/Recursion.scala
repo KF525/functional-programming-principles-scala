@@ -25,15 +25,12 @@ class Recursion {
     case (h::t, count) => balanceHelper(t, count)
   }
 
-  //TODO: Tail recursive
-  //TODO: End result as an either
-  def countChange(money: Int, coins: List[Int]): Int = {
-    if (money == 0) 1
-    else if (money < 0) 0
-    else coins match {
-      case Nil => 0
-      case h::t =>
-        countChange(money - h, coins) + countChange(money, t)
-    }
+  def countChange(money: Int, coins: List[Int]): Int =
+    if (money.equals(0)) 0 else countChangeHelper(money, coins)
+
+  def countChangeHelper(money: Int, coins: List[Int]): Int = {
+    if (money.equals(0)) 1
+    else if (money < 0 || coins.isEmpty) 0
+    else countChangeHelper(money - coins.head, coins) + countChangeHelper(money, coins.tail)
   }
 }

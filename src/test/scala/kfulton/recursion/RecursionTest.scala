@@ -47,7 +47,7 @@ class RecursionTest extends FlatSpec with Matchers {
   }
 
   it should "handle the case where no monetary amount is given" in {
-    pending
+    recursion.countChange(0, List(1)) shouldBe 0
   }
 
   it should "handle the case where no coins are given" in {
